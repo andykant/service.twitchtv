@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import xbmc
 import urllib
 import urllib2
@@ -25,6 +26,8 @@ def get_json(url = '', params = {}):
 class Twitch:
   def __init__(self):
     data = get_json(STREAMS, { 'game': 'League of Legends', 'limit': 8 })
+    for stream in data['streams']:
+      xbmc.log(json.dumps(stream['channel']['display_name']) + ': ' + json.dumps(stream['channel']['status']))
 
 if __name__ == '__main__':
   Twitch()
